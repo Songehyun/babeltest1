@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab Menu with Hash</title>
+    <style>
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="#tab1">Tab 1</a>
+      <a href="#tab2">Tab 2</a>
+      <a href="#tab3">Tab 3</a>
+    </div>
+    <div id="tab1" class="tab-content">Content for Tab 1</div>
+    <div id="tab2" class="tab-content">Content for Tab 2</div>
+    <div id="tab3" class="tab-content">Content for Tab 3</div>
+
+    <script>
+      function showTabFromHash() {
+        const hash = location.hash;
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach((tab) => {
+          if (hash === `#${tab.id}`) {
+            tab.classList.add("active");
+          } else {
+            tab.classList.remove("active");
+          }
+        });
+      }
+
+      window.addEventListener("hashchange", showTabFromHash);
+      window.addEventListener("load", showTabFromHash);
+    </script>
+  </body>
+</html>
